@@ -114,7 +114,7 @@ class GrafkomApp(tk.Tk):
 
         tk.Label(
             header,
-            text="Shape • Translasi • Scaling • Rotasi • Refleksi • Shear • Fill",
+            text="Shape • Translasi • Scaling • Rotasi • Fill",
             bg="#111827",
             fg="#CBD5E1",
             font=("Arial", 10),
@@ -239,12 +239,7 @@ class GrafkomApp(tk.Tk):
         self.btn(rotate_box, "180°", lambda: self.rotate_selected(180), 10).grid(row=0, column=2, padx=2, pady=2)
         self.btn(rotate_box, "Custom", self.rotate_custom, 32).grid(row=1, column=0, columnspan=3, sticky="ew", padx=2, pady=2)
 
-        extra_box = self.section(panel, "Refleksi & Shear")
-        self.btn(extra_box, "Refleksi X", self.reflect_x_selected, 14).grid(row=0, column=0, padx=2, pady=2)
-        self.btn(extra_box, "Refleksi Y", self.reflect_y_selected, 14).grid(row=0, column=1, padx=2, pady=2)
-        self.btn(extra_box, "Shear X", self.shear_x_custom, 14).grid(row=1, column=0, padx=2, pady=2)
-        self.btn(extra_box, "Shear Y", self.shear_y_custom, 14).grid(row=1, column=1, padx=2, pady=2)
-
+        color_box = self.section(panel, "Warna & Fill")
         color_box = self.section(panel, "Warna & Fill")
 
         self.outline_button = tk.Button(
@@ -368,8 +363,6 @@ class GrafkomApp(tk.Tk):
         self.bind("p", lambda _event: self.set_tool("pencil"))
         self.bind("f", lambda _event: self.set_tool("fill"))
         self.bind("r", lambda _event: self.rotate_selected(45))
-        self.bind("x", lambda _event: self.reflect_x_selected())
-        self.bind("y", lambda _event: self.reflect_y_selected())
 
     # =====================
     # State
@@ -1032,54 +1025,8 @@ class GrafkomApp(tk.Tk):
 
         self.rotate_selected(angle)
 
-    def reflect_x_selected(self) -> None:
-        obj = self.require_selected()
-        if not obj:
-            return
-
-        self.push_undo()
-        obj.points = tf.reflect_x(obj.points)
-        self.status.set("Refleksi X berhasil.")
-        self.redraw()
-
-    def reflect_y_selected(self) -> None:
-        obj = self.require_selected()
-        if not obj:
-            return
-
-        self.push_undo()
-        obj.points = tf.reflect_y(obj.points)
-        self.status.set("Refleksi Y berhasil.")
-        self.redraw()
-
-    def shear_x_custom(self) -> None:
-        shx = simpledialog.askfloat("Shear X", "Masukkan nilai shear X:", initialvalue=0.3)
-        if shx is None:
-            return
-
-        obj = self.require_selected()
-        if not obj:
-            return
-
-        self.push_undo()
-        obj.points = tf.shear_x(obj.points, shx)
-        self.status.set(f"Shear X: {shx}")
-        self.redraw()
-
-    def shear_y_custom(self) -> None:
-        shy = simpledialog.askfloat("Shear Y", "Masukkan nilai shear Y:", initialvalue=0.3)
-        if shy is None:
-            return
-
-        obj = self.require_selected()
-        if not obj:
-            return
-
-        self.push_undo()
-        obj.points = tf.shear_y(obj.points, shy)
-        self.status.set(f"Shear Y: {shy}")
-        self.redraw()
-
+    # =====================
+    # File
     # =====================
     # File
     # =====================

@@ -61,23 +61,7 @@ Pilihan:
 
 Rotasi dilakukan terhadap pusat objek.
 
-## 5. Refleksi
-Status: Tambahan
-
-Pilihan:
-- Refleksi terhadap sumbu X
-- Refleksi terhadap sumbu Y
-
-Refleksi dilakukan terhadap pusat objek.
-
-## 6. Shear
-Status: Tambahan
-
-Pilihan:
-- Shear X
-- Shear Y
-
-## 7. Warna dan Fill
+## 5. Warna dan Fill
 Status: Wajib
 
 Fitur:

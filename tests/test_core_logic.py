@@ -43,16 +43,6 @@ class TestCoreGrafkomLogic(unittest.TestCase):
         result = tf.rotate(points, 90)
         self.assertEqual(len(result), len(points))
 
-    def test_reflection_keeps_number_of_points(self):
-        points = [(0, 0), (10, 0), (10, 10), (0, 10)]
-        self.assertEqual(len(tf.reflect_x(points)), len(points))
-        self.assertEqual(len(tf.reflect_y(points)), len(points))
-
-    def test_shear_keeps_number_of_points(self):
-        points = [(0, 0), (10, 0), (10, 10), (0, 10)]
-        self.assertEqual(len(tf.shear_x(points, 0.3)), len(points))
-        self.assertEqual(len(tf.shear_y(points, 0.3)), len(points))
-
     def test_translate_keep_visible_not_empty(self):
         points = [(100, 100), (200, 100), (200, 200), (100, 200)]
         result = tf.translate_keep_visible(points, 9999, 0, 900, 560)
